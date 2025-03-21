@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+{% block title %}{{movie.title}}{% endblock %}
+{% block content %} 
+
+<h1 class="text-dark text-centr mb-3">Авторизироваться</h1>
+<p class="">{{error}}</p>
+<form method="post" action="" class="w-25 mx-auto d-flex flex-column gap-2">
+{% csrf_token %}
+    <input type="text" name="username" id="name" placeholder="введите имя" required />
+    <input type="password" name="password" id="password" placeholder="введите пароль" required />
+    <button tupe="submit" class="form_control btn btn-outline-light mb-3">войти</button>
+
+</form>
+{% endblock %}

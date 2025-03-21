@@ -16,12 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from core.views import sign_in, sign_up, profile
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('movie.urls'))
+    path('', include('movie.urls')),
+    path('sign_in/', sign_in, name='sign_in'),
+    path('sign_up/', sign_up, name='sign_up'),
+    path('profile/', profile, name='profile'),
+
 ]
 
 

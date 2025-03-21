@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% block title %}{{movie.title}}{% endblock %}
+{% block content %} 
+<h1 class="text-white text center mb-3">Регистрация</h1>
+<form method="post" action="" class="w-25 mx-auto d-flex flex-column gap-2">
+    {% csrf_token %}
+    <input type="text" name="name" id="name" placeholder="введите имя" required />
+    <input type="email" name="email" id="email" placeholder="введите ваш email" required />  
+    <input type="password" name="password" id="password" placeholder="введите пароль" required />
+    <input type="password" name="repeat_password" id="password" placeholder="повторите пароль" required />
+    <button tupe="submit" class="form_control btn btn-outline-light mb-3">Зарегестрироваться</button>
+</form>
+<p>{{error}}</p>
+
+
+
+{% endblock %}

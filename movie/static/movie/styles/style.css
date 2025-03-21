@@ -1,0 +1,21 @@
+.desc{
+    width: 300px;
+}
+.trailer{
+    width: 450px;
+    height: 300px;
+}
+.film_detail {
+    background: red;
+    border-radius: 5px;
+    margin-top: 80px;
+    padding-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+body {
+    /* background: black; */
+}
+.fw-bold{
+    font-weight: 400;
+}

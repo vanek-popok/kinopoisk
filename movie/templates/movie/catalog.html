@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+ {% extends "core/base.html" %}
+{% block title %}Catalog{% endblock %}
+{% block content %} 
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+    {% for movie in movies %}
+    <div class="card" style="width: 18rem;">
+        <a class="text-decoration-none text-dark" href="{% url 'film_detail' film_id=movie.id %}">
+        <img src="{{movie.poster.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{movie.title}}</h5>
+            <p>
+            {% for genre in movie.genres.all %}
+            {{genre.name}}{% if not forloop.last %},{% endif %}
+            {% endfor %}
+            </p>
+        </div>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+    {% endblock %}

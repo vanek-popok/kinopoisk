@@ -1,0 +1,63 @@
+{% extends "core/base.html" %}
+{% block title %}{{movie.title}}{% endblock %}
+{% block content %} 
+{% load static %}
+    <div class="film_detail d-flex gap-5">
+        <div>
+            <img src="{{movie.poster.url}}" alt="">
+            <p class="desc">{{movie.description}}</p>
+        </div>
+        <div class='d-flex flex-column'>
+            <div class="d-flex">
+                <div class="">
+                    <h1>{{movie.title}}</h1>
+                    <p class="rigte_info">{{movie.release_date}}</p>
+                    <p class="rigte_info">{{movie.rating}}</p>
+                    <p class="rigte_info">{{movie.duration}}</p>
+                        <span>
+                    {% for genre in movie.genres.all %}
+                    {{genre.name}}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                        </span>
+                    <span>
+                    {% for director in movie.directors.all %}
+                    {{director.name}}
+                    {% endfor %}
+                    <p>{{movie.budget}}</p>
+                    <span>
+                        {% for actor in movie.actors.all %}
+                        {{actor.name}}
+                        {% endfor %}
+                    </span>
+                    </span>
+                </div>
+                {% if movie.trailer.url != Null %}
+                    <video class="trailer" controls>
+                        <source src='{{movie.trailer.url}}'>
+                    </video>
+                {% endif %}
+            </div>
+            <div class="">
+            <form action="{% url 'leave_review' %}" method="post">
+                {% csrf_token %}
+                <input name="movie_id" type="hidden" value="{{movie.id}}">
+                <textarea name="comment" id=""></textarea>
+                <button type="submit">Отправить!</button>
+            </form>
+            {% for review in reviews %}
+            <div class="border-secondary rounded-2 border-1 border p-2">
+                <h6 class="text-light fw-6">{{review.author.username}}</h6>
+                <p>{{review.text}}</p>
+                <div class="frsc mt-1 gap-2">
+                    <span class="ms-auto text-secondary fs-6">{{review.created_at}}</span>
+                </div>
+
+             
+
+            </div>
+            {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+    {% endblock %}
